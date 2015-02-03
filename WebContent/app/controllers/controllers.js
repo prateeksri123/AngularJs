@@ -1,7 +1,7 @@
 /**
  * @author Prateek
  */
-app.controller('TaskControlloer', function($scope, customersService,$location) {
+app.controller('TaskControlloer', function($scope, customersService,$location,$http) {
 
 	init();
 
@@ -30,16 +30,17 @@ app.controller('TaskControlloer', function($scope, customersService,$location) {
 		$scope.newCustomer.city = '';
 		$scope.newCustomer.dueDate = 12/12/2012;
 		$scope.newCustomer.priority = 0;
+		hello();
 	};
 
 	$scope.deleteCustomer = function(id) {
 		customersService.deleteCustomer(id);
 	};
 
-	function Hello($scope, $http) {
-	    $http.get('http://rest-service.guides.spring.io/greeting').
+	function hello() {
+	    $http.get('rest/task').
 	        success(function(data) {
-	            $scope.greeting = data;
+	            console.log(data);
 	        });
 	}
 });
