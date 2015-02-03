@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+	<class name="com.task.main.model.User" table="User">
+
+		<id name="id" column="ID">
+			<generator class="native" />
+		</id>
+
+	
+		<property name="userName">
+			<column name="userName" length="255" not-null="true" />
+		</property>
+
+		<property name="password">
+			<column name="password" length="255" not-null="true" />
+		</property>
+
+		<property name="firstName">
+			<column name="firstName" length="255" not-null="true" />
+		</property>
+		
+		<property name="lastName">
+			<column name="lastName" length="255" not-null="true" />
+		</property>
+
+	</class>
+</hibernate-mapping>

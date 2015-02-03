@@ -2,13 +2,24 @@ package com.task.main;
 
 import java.util.List;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.task.main.model.Person;
 import com.task.main.model.User;
 
+
+@Path("/task")
 public class TaskManagement {
-	public static void main(String[] args) {
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public List<User> getPerson() {
 		System.out.println("Hello Eclipse!");
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"Bean.xml");
@@ -25,6 +36,7 @@ public class TaskManagement {
 					+ person.getLastName() + "\", " + person.getId());
 
 		}
+		return list;
 
 	}
 }
