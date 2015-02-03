@@ -1,0 +1,41 @@
+<div class="add task view">
+	<div class="container">
+		<header>
+			<h3>Hello</h3>
+		</header>
+		<h3>Add Task Home Page</h3>
+		<div >
+			<h4> Please tell us about you </h4>
+
+			
+			First Name :
+			<input type="text" id="txtFirstName" data-ng-model="newCustomer.firstName" placeholder="First Name">
+			<br />
+			<br/>
+			Last Name :
+			<input type="text" id="txtLastName" data-ng-model="newCustomer.lastName" placeholder="Last Name">
+			<br />
+			<br />
+			City:
+			<input data-ng-model="newCustomer.city" type="text" placeholder="Customer City">
+			<br />
+			<br/>
+			Due Date :
+			<input type="text" data-ng-model="newCustomer.dueDate" id="txtEmail" placeholder="01/12/1980">
+			<br />
+			<br/>
+			Number: 
+			<input type="number" name="input" ng-model="newCustomer.priority" min="0" max="10" required>
+			
+		</div>
+
+		<div class="row">
+			<div class="span6">
+				<button id="submitCustomer" class="btn btn-primary" type="button"
+				data-ng-disabled="!newCustomer.firstName || !newCustomer.lastName || !newCustomer.city || !newCustomer.dueDate"
+				data-ng-click="insertCustomer()">
+					Add Customer
+				</button>
+
+			</div>
+		</div>

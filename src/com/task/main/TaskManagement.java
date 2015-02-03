@@ -18,7 +18,7 @@ import com.task.main.model.User;
 public class TaskManagement {
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getPerson() {
 		System.out.println("Hello Eclipse!");
 		ApplicationContext context = new ClassPathXmlApplicationContext(
