@@ -1,17 +1,19 @@
 package com.task.main;
 
+import java.util.List;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.hibernate.mapping.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sun.jmx.snmp.tasks.Task;
-import com.task.main.model.User;
 import com.task.service.TaskServiceImpl;
 
 
@@ -20,33 +22,37 @@ public class TaskManagement {
 
 	public ApplicationContext context = new ClassPathXmlApplicationContext(
 	"Bean.xml");
+	TaskServiceImpl taskServiceImpl = (TaskServiceImpl) context.getBean("taskService");
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public java.util.List<User> getPerson() {
-		System.out.println("Hello Eclipse!");
-		
+	public java.util.List<com.task.main.model.Task> getTaskList() {
+		return taskServiceImpl.getTaskList();
 
-		User obj = (User) context.getBean("helloWorld");
-		System.out.println("Hello Eclipse! " + obj.getFirstName());
-		TestPerson tp = new TestPerson();
-		java.util.List<User> list = tp.getPersons();
-		java.util.Iterator<User> iter = list.iterator();
-		while (iter.hasNext()) {
-
-			User person = iter.next();
-			System.out.println("Person: \"" + person.getFirstName() + "\", "
-					+ person.getLastName() + "\", " + person.getId());
-
-		}
-		return list;
+	}
+	
+	@GET
+	@Path("/{taskId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public com.task.main.model.Task getTaskbyId(@PathParam("taskId") Long taskId) {
+		return taskServiceImpl.getTaskById(taskId);
 
 	}
 	
 	@POST
 	public java.util.List<Task> saveTask(com.task.main.model.Task task) {
-		TaskServiceImpl taskServiceImpl = (TaskServiceImpl) context.getBean("taskService");
+		
+		//taskServiceImpl.createSession();
 		taskServiceImpl.saveTask(task);
 		System.out.println(task.getPriority());
 		return null;
+	}
+	
+	@DELETE
+	@Path("/{taskId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<com.task.main.model.Task> deleteTaskbyId(@PathParam("taskId") Long taskId) {
+		taskServiceImpl.deleteTaskById(taskId);
+		return taskServiceImpl.getTaskList();
+
 	}
 }

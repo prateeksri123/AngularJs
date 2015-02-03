@@ -33,8 +33,8 @@ app.service('customersService', function () {
     	return user;
     };
 
-    this.getCustomer = function (id) {
-        for (var i = 0; i < customers.length; i++) {
+    this.getCustomer = function (id,tasks) {
+        for (var i = 0; i < tasks.length; i++) {
             if (customers[i].id === id) {
                 return customers[i];
             }

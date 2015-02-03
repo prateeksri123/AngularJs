@@ -18,6 +18,11 @@ app.config(function ($routeProvider) {
                 controller: 'TaskEditController',
                 templateUrl: 'app/views/AddTask.html'
             })
+         .when('/editTask/:TaskId',
+            {
+                controller: 'TaskEditController',
+                templateUrl: 'app/views/AddTask.html'
+            })
         .otherwise({ redirectTo: '/taskHomePage' });
 });
 

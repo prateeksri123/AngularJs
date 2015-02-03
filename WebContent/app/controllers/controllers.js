@@ -10,8 +10,11 @@ app.controller('TaskControlloer', function($scope, customersService,$location,$h
 	init();
 
 	function init() {
-		$scope.tasks = customersService.getCustomers();
-		console.log("xxxxxx");
+		$http.get('rest/task').
+        success(function(data) {
+        	$scope.tasks = data;
+            console.log(data);
+        });
 		$scope.user = customersService.getUser();
 		$scope.editMode = false;
 	}
@@ -23,32 +26,28 @@ app.controller('TaskControlloer', function($scope, customersService,$location,$h
 
 
 	$scope.insertCustomer = function() {
-		//var firstName = $scope.newCustomer.firstName;
-		//var lastName = $scope.newCustomer.lastName;
-	
-		//var dueDate = $scope.newCustomer.dueDate;
-		//var priority = $scope.newCustomer.priority;
+		
 		$http.post('rest/task',$scope.newCustomer).success(function(data) {
             console.log(data);
+            getUpdatedList();
+            $scope.go("/taskHomePage");
         });
-		console.log(priority);
-		//customersService.insertCustomer(firstName, lastName, city, dueDate,priority);
-		//$scope.newCustomer.firstName = '';
-		//$scope.newCustomer.lastName = '';
-		//$scope.newCustomer.city = '';
-		//$scope.newCustomer.dueDate = 12/12/2012;
-		//$scope.newCustomer.priority = 0;
-		hello();
-		$scope.go("/taskHomePage");
+		
 	};
 
-	$scope.deleteCustomer = function(id) {
-		customersService.deleteCustomer(id);
+	$scope.deleteTask = function(id) {
+		$('task_'+id).hide();
+		$http.delete('rest/task/'+id).success(function(data) {
+            console.log(data);
+            $scope.tasks = data;
+            $scope.go("/taskHomePage");
+        });
 	};
 
-	function hello() {
+	function getUpdatedList() {
 	    $http.get('rest/task').
 	        success(function(data) {
+	        	$scope.tasks = data;
 	            console.log(data);
 	        });
 	}
@@ -63,8 +62,8 @@ app.controller('NavbarController', function($scope, $location) {
 	}
 });
 
-app.controller('TaskEditController', function ($scope, $routeParams, customersService, $location) {
-    $scope.customer = {};
+app.controller('TaskEditController', function ($scope, $routeParams, customersService, $location,$http) {
+    $scope.tasks = {};
     $scope.ordersTotal = 0.00;
 
     init();
@@ -73,14 +72,22 @@ app.controller('TaskEditController', function ($scope, $routeParams, customersSe
         //Grab customerID off of the route
         var taskId = ($routeParams.TaskId) ? parseInt($routeParams.TaskId) : 0;
         console.log("Task ID " + taskId);
-        if (taskId > 0) {
-            $scope.newCustomer = customersService.getCustomer(taskId);
+        if (taskId > 0) { 
+        	$http.get('rest/task/' + taskId).
+	        success(function(data) {
+	        	$scope.newCustomer = data;
+	            console.log(data);
+	        });
         }
         $scope.editMode = true;
     };
     
     $scope.update = function(){
-    	$scope.go("/taskHomePage");
+    	$http.post('rest/task',$scope.newCustomer).success(function(data) {
+            console.log(data);
+            $scope.go("/taskHomePage");
+        });
+    	
     };
     
     $scope.go = function(url) {
