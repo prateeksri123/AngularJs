@@ -9,6 +9,7 @@ app.controller('TaskControlloer', function($scope, customersService,$location,$h
 		$scope.tasks = customersService.getCustomers();
 		console.log("xxxxxx");
 		$scope.user = customersService.getUser();
+		$scope.editMode = false;
 	}
 
 	$scope.go = function(url) {
@@ -31,6 +32,7 @@ app.controller('TaskControlloer', function($scope, customersService,$location,$h
 		$scope.newCustomer.dueDate = 12/12/2012;
 		$scope.newCustomer.priority = 0;
 		hello();
+		$scope.go("/taskHomePage");
 	};
 
 	$scope.deleteCustomer = function(id) {
@@ -54,7 +56,7 @@ app.controller('NavbarController', function($scope, $location) {
 	}
 });
 
-app.controller('TaskEditController', function ($scope, $routeParams, customersService) {
+app.controller('TaskEditController', function ($scope, $routeParams, customersService, $location) {
     $scope.customer = {};
     $scope.ordersTotal = 0.00;
 
@@ -66,9 +68,21 @@ app.controller('TaskEditController', function ($scope, $routeParams, customersSe
         //Grab customerID off of the route
         var taskId = ($routeParams.TaskId) ? parseInt($routeParams.TaskId) : 0;
         console.log("Task ID " + taskId);
-        if (customerID > 0) {
+        if (taskId > 0) {
             $scope.newCustomer = customersService.getCustomer(taskId);
         }
-    }
+        $scope.editMode = true;
+    };
+    
+    $scope.update = function(){
+    	$scope.go("/taskHomePage");
+    };
+    
+    $scope.go = function(url) {
+        console.log(url);
+        $location.path( url );
+     };
+    
+	
 
 });
