@@ -7,16 +7,14 @@
 <h4>Please tell us about you</h4>
 
 
-First Name : <input type="text" id="txtFirstName"
-	data-ng-model="newCustomer.firstName" placeholder="First Name">
+Task Name : <input type="text" id="txtFirstName"
+	data-ng-model="newCustomer.taskName" placeholder="First Name">
 <br />
 <br />
-Last Name : <input type="text" id="txtLastName"
-	data-ng-model="newCustomer.lastName" placeholder="Last Name"> <br />
+Task Description : <input type="text" id="txtLastName"
+	data-ng-model="newCustomer.taskDescription" placeholder="Last Name"> <br />
 <br />
-City: <input data-ng-model="newCustomer.city" type="text"
-	placeholder="Customer City"> <br />
-<br />
+
 Due Date : <input type="text" data-ng-model="newCustomer.dueDate"
 	id="txtEmail" placeholder="01/12/1980"> <br />
 <br />
@@ -28,7 +26,7 @@ Number: <input type="number" name="input"
 
      <span data-ng-hide="editMode"> 
      <input type="submit" value="Add Task" 
-    data-ng-disabled="!newCustomer.firstName || !newCustomer.lastName || !newCustomer.city || !newCustomer.dueDate"
+    data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate"
      data-ng-click="insertCustomer()" 	class="btn btn-primary" />
      </span> 
      <span data-ng-show="editMode"> 

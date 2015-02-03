@@ -8,5 +8,8 @@
    <bean id="helloWorld" class="com.task.main.model.User">
        <property name="firstName" value="Hello World!"/>
    </bean>
+   
+   <bean id="taskService" class="com.task.service.TaskServiceImpl">
+   </bean>
 
 </beans>

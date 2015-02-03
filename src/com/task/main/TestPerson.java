@@ -15,13 +15,13 @@ public class TestPerson {
 	/**
 	 * @param args
 	 */
-	private Session session;
+	public Session session;
 	public TestPerson() {
 		 session = SessionFactoryUtil.getSessionFactory().getCurrentSession();
 
 		 session.beginTransaction();
 
-         createPerson();
+         //createPerson();
 
          //queryPerson(session);
         System.out.println("done");

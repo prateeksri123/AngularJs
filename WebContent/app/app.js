@@ -1,6 +1,5 @@
 var app = angular.module('toDoAssignment', ['ngRoute']);
 
-//This configures the routes and associates each route with a view and a controller
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/taskHomePage',
@@ -21,6 +20,8 @@ app.config(function ($routeProvider) {
             })
         .otherwise({ redirectTo: '/taskHomePage' });
 });
+
+
 
 
 

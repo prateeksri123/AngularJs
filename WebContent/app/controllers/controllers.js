@@ -1,6 +1,10 @@
 /**
  * @author Prateek
  */
+app.factory("task",function($resource){
+	return $resource('/rest/task/:id',{id: '@id'},{update : {method:'PUT'}})
+});
+
 app.controller('TaskControlloer', function($scope, customersService,$location,$http) {
 
 	init();
@@ -19,18 +23,21 @@ app.controller('TaskControlloer', function($scope, customersService,$location,$h
 
 
 	$scope.insertCustomer = function() {
-		var firstName = $scope.newCustomer.firstName;
-		var lastName = $scope.newCustomer.lastName;
-		var city = $scope.newCustomer.city;
-		var dueDate = $scope.newCustomer.dueDate;
-		var priority = $scope.newCustomer.priority;
+		//var firstName = $scope.newCustomer.firstName;
+		//var lastName = $scope.newCustomer.lastName;
+	
+		//var dueDate = $scope.newCustomer.dueDate;
+		//var priority = $scope.newCustomer.priority;
+		$http.post('rest/task',$scope.newCustomer).success(function(data) {
+            console.log(data);
+        });
 		console.log(priority);
-		customersService.insertCustomer(firstName, lastName, city, dueDate,priority);
-		$scope.newCustomer.firstName = '';
-		$scope.newCustomer.lastName = '';
-		$scope.newCustomer.city = '';
-		$scope.newCustomer.dueDate = 12/12/2012;
-		$scope.newCustomer.priority = 0;
+		//customersService.insertCustomer(firstName, lastName, city, dueDate,priority);
+		//$scope.newCustomer.firstName = '';
+		//$scope.newCustomer.lastName = '';
+		//$scope.newCustomer.city = '';
+		//$scope.newCustomer.dueDate = 12/12/2012;
+		//$scope.newCustomer.priority = 0;
 		hello();
 		$scope.go("/taskHomePage");
 	};
@@ -60,8 +67,6 @@ app.controller('TaskEditController', function ($scope, $routeParams, customersSe
     $scope.customer = {};
     $scope.ordersTotal = 0.00;
 
-    //I like to have an init() for controllers that need to perform some initialization. Keeps things in
-    //one place...not required though especially in the simple example below
     init();
 
     function init() {
