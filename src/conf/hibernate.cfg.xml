@@ -14,7 +14,7 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost/taskassignment</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">fbs125</property>
+    <property name="hibernate.connection.password"></property>
     <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 
     <!-- Automatic schema creation (begin) === -->
