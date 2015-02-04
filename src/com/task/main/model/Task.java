@@ -6,6 +6,15 @@ public class Task {
 	private String taskDescription;
 	private String dueDate;
 	private int priority;
+	private int userId;
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public int getId() {
 		return id;

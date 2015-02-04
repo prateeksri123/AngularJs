@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<!DOCTYPE hibernate-configuration PUBLIC 
-"-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
@@ -10,17 +10,17 @@
     <!-- hibernate dialect -->
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 
-    
+
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost/test</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password"></property>
+    <property name="hibernate.connection.password">fbs125</property>
     <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
-    
-    <!-- Automatic schema creation (begin) === -->     
-    <property name="hibernate.hbm2ddl.auto">create</property>
- 
-    
+
+    <!-- Automatic schema creation (begin) === -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+
     <!-- Simple memory-only cache -->
     <property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
 

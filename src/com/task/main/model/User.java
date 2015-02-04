@@ -2,17 +2,17 @@ package com.task.main.model;
 
 
 public class User {
-	private Long id;
+	private int id;
 	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

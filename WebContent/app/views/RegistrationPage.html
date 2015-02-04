@@ -1,0 +1,42 @@
+<div class="registration page" id="registraionPage" ng-controller=loginController>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" data-dismiss="modal">
+							&times;
+						</button>
+						<h4 class="modal-title">Registration Page</h4>
+					</div>
+					<div class="modal-body">
+						<h4> Please tell us about you </h4>
+
+						UserName :
+						<input type="text" id="txtUserName" placeholder="USERNAME" ng-model="user.userName">
+						<br />
+						<br />
+						Password :
+						<input type="password" id="txtPassword" placeholder="PASSWORD" ng-model="user.password">
+						<br />
+						<br/>
+						First Name :
+						<input type="text" id="txtFirstName" placeholder="First Name" ng-model="user.firstName">
+						<br />
+						<br/>
+						Last Name :
+						<input type="text" id="txtLastName" placeholder="Last Name" ng-model="user.lastName">
+						<br />
+						<br/>
+						Password :
+						<input type="email" id="txtEmail" placeholder="abc@xyz.com">
+						<br />
+						<br/>
+						<button id="cmdAddClient" class="btn btn-info" data-dismiss="modal" ng-click="addUser()">
+							REGISTER
+						</button>
+						<button id="btnClosePopup" class="btn btn-info" data-dismiss="modal" ng-click="backToLogin()">
+							Cancel
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>

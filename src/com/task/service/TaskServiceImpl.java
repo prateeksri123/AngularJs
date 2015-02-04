@@ -17,8 +17,8 @@ public class TaskServiceImpl extends BaseTaskManagement implements TaskService {
 		super();
 	}
 	@Override
-	public Task getTaskById(Long id) {
-		 Query query = session.createQuery("from Task where id=" + id);
+	public Task getTaskById(Long id,Long userId) {
+		 Query query = session.createQuery("from Task where id=" + id + " and userId=" + userId);
 	        List <Task>list = query.list();
 	                session.getTransaction().commit();
 	         return list.get(0);
@@ -29,7 +29,7 @@ public class TaskServiceImpl extends BaseTaskManagement implements TaskService {
 		// TODO Auto-generated method stub
        saveTaskData(task);
 	}
-	
+
 	private void saveTaskData(Task task) {
 		transaction = session.beginTransaction();
 		if(task.getId() != 0) {
@@ -37,25 +37,27 @@ public class TaskServiceImpl extends BaseTaskManagement implements TaskService {
 		} else {
 			session.save(task);
 		}
-		
+
 		transaction.commit();
 	}
-	
-	public List<Task> getTaskList() {
-		 Query query = session.createQuery("from Task");
+
+	public List<Task> getTaskList(int userId) {
+		 Query query = session.createQuery("from Task  where userId=" + userId);
 	        List <Task>list = query.list();
 	                session.getTransaction().commit();
 	         return list;
 		//return null;
 	}
-	public void deleteTaskById(Long id) {
+	public int deleteTaskById(Long id) {
 		 Query query = session.createQuery("from Task where id=" + id);
 	        List <Task>list = query.list();
 		Task task = list.get(0);
+		int userId = task.getUserId();
 		//session.beginTransaction();
 		session.delete(task);
-		
-		
+        return userId;
+
 	}
+
 
 }

@@ -1,19 +1,32 @@
 <div class="home page view">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand " href="#/">
+                    <img src="Content/Images/people.png" alt="logo"> Customer Manager
+                </a>
+                <ul class="nav nav-pills" data-ng-controller="NavbarController">
+                    <li data-ng-class="{'active':getClass('/taskHomePage')}"><a href="#/customers">Home</a></li>
+                    <li data-ng-class="{'active':getClass('/orders')}"><a href="#/orders">Orders</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 	<div class="container">
 		<header>
 			<h3>Hello</h3>
 		</header>
-		<div data-ng-model="user"><h3 >Hello! {{user.firstName}} {{user.lastName}} </h3></div>
-		
+		<div data-ng-model="user"><h3 >Hello! {{loggedInUser.firstName}} {{loggedInUser.lastName}} </h3></div>
+
 		<div class="row">
-			
-			
-			
-				
+
+
+
+
 				<button id="addTask" class="btn btn-primary" ng-click="go('/addTask')">
 						Add Task
 					</button>
-			
+
 		</div>
 		<br />
 		<br />
@@ -37,7 +50,7 @@
 							<td>{{ task.dueDate }} </td>
 							<td><a href="#/editTask/{{task.id}}">Edit</a> <a href ng-click="deleteTask(task.id)">Delete</a></td>
 						</tr>
-						
+
 					</tbody>
 				</table>
 

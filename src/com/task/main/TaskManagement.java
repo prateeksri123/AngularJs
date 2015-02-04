@@ -24,35 +24,36 @@ public class TaskManagement {
 	"Bean.xml");
 	TaskServiceImpl taskServiceImpl = (TaskServiceImpl) context.getBean("taskService");
 	@GET
+	@Path("/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public java.util.List<com.task.main.model.Task> getTaskList() {
-		return taskServiceImpl.getTaskList();
+	public java.util.List<com.task.main.model.Task> getTaskList(@PathParam("userId") int userId) {
+		return taskServiceImpl.getTaskList(userId);
 
 	}
-	
+
 	@GET
-	@Path("/{taskId}")
+	@Path("/{taskId}/{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public com.task.main.model.Task getTaskbyId(@PathParam("taskId") Long taskId) {
-		return taskServiceImpl.getTaskById(taskId);
+	public com.task.main.model.Task getTaskbyId(@PathParam("taskId") Long taskId, @PathParam("userId") Long userId) {
+		return taskServiceImpl.getTaskById(taskId,userId);
 
 	}
-	
+
 	@POST
 	public java.util.List<Task> saveTask(com.task.main.model.Task task) {
-		
+
 		//taskServiceImpl.createSession();
 		taskServiceImpl.saveTask(task);
 		System.out.println(task.getPriority());
 		return null;
 	}
-	
+
 	@DELETE
 	@Path("/{taskId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<com.task.main.model.Task> deleteTaskbyId(@PathParam("taskId") Long taskId) {
-		taskServiceImpl.deleteTaskById(taskId);
-		return taskServiceImpl.getTaskList();
+		int userId = taskServiceImpl.deleteTaskById(taskId);
+		return taskServiceImpl.getTaskList( userId);
 
 	}
 }

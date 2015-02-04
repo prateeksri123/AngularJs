@@ -23,7 +23,13 @@ app.config(function ($routeProvider) {
                 controller: 'TaskEditController',
                 templateUrl: 'app/views/AddTask.html'
             })
-        .otherwise({ redirectTo: '/taskHomePage' });
+         .when('/registrationPage',
+            {
+                controller: 'loginController',
+                templateUrl: 'app/views/RegistrationPage.html'
+            })
+
+        .otherwise({ redirectTo: '/' });
 });
 
 

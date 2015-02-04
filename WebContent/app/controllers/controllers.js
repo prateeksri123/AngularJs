@@ -5,18 +5,55 @@ app.factory("task",function($resource){
 	return $resource('/rest/task/:id',{id: '@id'},{update : {method:'PUT'}})
 });
 
+app.controller('loginController', function($scope,$location,$http,customersService){
+    $scope.openRegistrationPage = function(){
+    	$scope.go("/registrationPage");
+    	document.getElementById('pageDiv').style.display = 'none';
+    }
+
+    $scope.login = function(){
+    	$http.get('rest/user/' + $scope.user.userName + '/' + $scope.user.password).
+        success(function(data) {
+        	customersService.setLoggedInUser(data);
+        	document.getElementById('pageDiv').style.display = 'none';
+        	$scope.go("/taskHomePage");
+            console.log(data);
+        });
+    }
+
+    $scope.backToLogin = function(){
+    	document.getElementById('pageDiv').style.display = 'block'
+    	$scope.go("/");
+    }
+
+    $scope.addUser = function(){
+    	$http.post('rest/user',$scope.user).success(function(data) {
+            console.log(data);
+            document.getElementById('pageDiv').style.display = 'block'
+            $scope.go("/");
+        });
+    }
+
+    $scope.go = function(url) {
+        console.log(url);
+        $location.path( url );
+     };
+
+});
+
 app.controller('TaskControlloer', function($scope, customersService,$location,$http) {
 
 	init();
 
 	function init() {
-		$http.get('rest/task').
+		$scope.loggedInUser = customersService.getLoggedInUser();
+		$http.get('rest/task/' + $scope.loggedInUser.id).
         success(function(data) {
         	$scope.tasks = data;
             console.log(data);
         });
-		$scope.user = customersService.getUser();
 		$scope.editMode = false;
+
 	}
 
 	$scope.go = function(url) {
@@ -26,13 +63,13 @@ app.controller('TaskControlloer', function($scope, customersService,$location,$h
 
 
 	$scope.insertCustomer = function() {
-		
+        $scope.newCustomer.userId = $scope.loggedInUser.id
 		$http.post('rest/task',$scope.newCustomer).success(function(data) {
             console.log(data);
             getUpdatedList();
             $scope.go("/taskHomePage");
         });
-		
+
 	};
 
 	$scope.deleteTask = function(id) {
@@ -70,10 +107,11 @@ app.controller('TaskEditController', function ($scope, $routeParams, customersSe
 
     function init() {
         //Grab customerID off of the route
+    	$scope.loggedInUser = customersService.getLoggedInUser();
         var taskId = ($routeParams.TaskId) ? parseInt($routeParams.TaskId) : 0;
         console.log("Task ID " + taskId);
-        if (taskId > 0) { 
-        	$http.get('rest/task/' + taskId).
+        if (taskId > 0) {
+        	$http.get('rest/task/' + taskId + '/' + $scope.loggedInUser.id).
 	        success(function(data) {
 	        	$scope.newCustomer = data;
 	            console.log(data);
@@ -81,20 +119,20 @@ app.controller('TaskEditController', function ($scope, $routeParams, customersSe
         }
         $scope.editMode = true;
     };
-    
+
     $scope.update = function(){
     	$http.post('rest/task',$scope.newCustomer).success(function(data) {
             console.log(data);
             $scope.go("/taskHomePage");
         });
-    	
+
     };
-    
+
     $scope.go = function(url) {
         console.log(url);
         $location.path( url );
      };
-    
-	
+
+
 
 });
