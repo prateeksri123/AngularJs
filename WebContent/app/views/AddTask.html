@@ -1,11 +1,21 @@
 <div class="add task view">
+<div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand " href="#/">
+                    <img src="Content/Images/people.png" alt="logo"> Task Manager
+                </a>
+                <ul class="nav nav-pills" data-ng-controller="NavbarController">
+                    <li data-ng-class="{'active':getClass('/taskHomePage')}"><a href="#/taskHomePage">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 <div class="container"><header>
 <h3>Hello</h3>
 </header>
 <h3>Add Task Home Page</h3>
 <div>
-<h4>Please tell us about you</h4>
-
 
 Task Name : <input type="text" id="txtFirstName"
 	data-ng-model="newCustomer.taskName" placeholder="First Name">
@@ -24,14 +34,14 @@ Number: <input type="number" name="input"
 <div class="row">
 <div class="span6">
 
-     <span data-ng-hide="editMode"> 
-     <input type="submit" value="Add Task" 
+     <span data-ng-hide="editMode">
+     <input type="submit" value="Add Task"
     data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate"
      data-ng-click="insertCustomer()" 	class="btn btn-primary" />
-     </span> 
-     <span data-ng-show="editMode"> 
-     <input	type="submit" value="Update Task" 
+     </span>
+     <span data-ng-show="editMode">
+     <input	type="submit" value="Update Task"
      data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate"
-     data-ng-click="update()" class="btn btn-primary" /> 
+     data-ng-click="update()" class="btn btn-primary" />
      </span>
 </div>
