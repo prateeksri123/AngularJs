@@ -15,33 +15,43 @@
 <h3>Hello</h3>
 </header>
 <h3>Add Task Home Page</h3>
-<div>
+<form class="form-horizontal" role="form">
 
-Task Name : <input type="text" id="txtFirstName"
-	data-ng-model="newCustomer.taskName" placeholder="First Name">
-<br />
-<br />
-Task Description : <input type="text" id="txtLastName"
-	data-ng-model="newCustomer.taskDescription" placeholder="Last Name"> <br />
-<br />
-
-Due Date : <input type="text" data-ng-model="newCustomer.dueDate"
-	id="txtEmail" placeholder="01/12/1980"> <br />
-<br />
-Number: <input type="number" name="input"
-	ng-model="newCustomer.priority" min="0" max="10" required></div>
-
-<div class="row">
-<div class="span6">
-
-     <span data-ng-hide="editMode">
-     <input type="submit" value="Add Task"
-    data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate"
-     data-ng-click="insertCustomer()" 	class="btn btn-primary" />
-     </span>
-     <span data-ng-show="editMode">
-     <input	type="submit" value="Update Task"
-     data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate"
-     data-ng-click="update()" class="btn btn-primary" />
-     </span>
+					<div class="form-group ">
+						<label class="control-label col-sm-1" for="username">Task Name:</label>
+						<div class="col-sm-3">
+							<input type="text" id="txtFirstName" data-ng-model="newCustomer.taskName" placeholder="Task Name">
+						</div>
+					</div>	
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="username">Task Description:</label>
+						<div class="col-sm-3">
+							<input type="text" id="txtLastName"	data-ng-model="newCustomer.taskDescription" placeholder="Task Description">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="username">Due Date:</label>
+						<div class="col-sm-3">
+							<input type="text" data-ng-model="newCustomer.dueDate"	id="txtDueDate" placeholder="01/12/1980"> 
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="username">Priority:</label>
+						<div class="col-sm-3">
+							<input type="number" name="input" ng-model="newCustomer.priority" min="0" max="10" required></div>
+						</div>
+					</div>
+					
+						<div class="form-group">
+						   <label class="control-label col-sm-4" ></label>
+						   <div class="col-sm-3">
+								<span data-ng-hide="editMode">
+	                               <input type="submit" value="Add Task" data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate" data-ng-click="insertCustomer()" 	class="btn btn-primary" />
+	                             </span>
+	                             <span data-ng-show="editMode">
+	                               <input	type="submit" value="Update Task" data-ng-disabled="!newCustomer.taskName || !newCustomer.dueDate"  data-ng-click="update()" class="btn btn-primary" />
+	                             </span>
+							</div>	
+						</div>
+					</form>	
 </div>
