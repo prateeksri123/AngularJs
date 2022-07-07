@@ -13,7 +13,7 @@ import com.task.main.model.User;
 public class BaseTaskManagement {
 
 	/**
-	 * @param args
+	 * @param args Testing Git
 	 */
 	public Session session;
 	private Transaction transaction;
